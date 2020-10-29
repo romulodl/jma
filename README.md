@@ -15,8 +15,8 @@ or add `romulodl/jma` to your `composer.json`. Please check the latest version i
 ## Usage
 
 ```php
-$ema = new Romulodl\Jma();
-$ema->calculate(
+$jma = new Romulodl\Jma();
+$jma->calculate(
   array $values,
   int $period = 7,
   int $phase = 50,
@@ -26,8 +26,8 @@ $ema->calculate(
 
 For example:
 ```php
-$ema = new Romulodl\Jma();
-$ema->calculate([10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+$jma = new Romulodl\Jma();
+$jma->calculate([10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
 ```
 
 You would normally give a larger period to add smoothness to the result.
