@@ -2,7 +2,7 @@
 
 Calculate the JMA of giving values.
 
-![Ema](https://github.com/romulodl/ema/workflows/Jma/badge.svg)
+![Jma](https://github.com/romulodl/jma/workflows/Jma/badge.svg)
 
 ## Instalation
 
