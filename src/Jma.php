@@ -37,6 +37,6 @@ class Jma
 			$return[] = $jma;
 		}
 
-		return $return;
+		return array_reverse($return);
 	}
 }
