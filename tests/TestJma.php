@@ -14,8 +14,9 @@ final class JmaTest extends TestCase
 			$values[] = $v[2];
 		}
 
-		$ema = new Jma();
-		$this->assertSame(8957.75, round($ema->calculate($values), 2));
+		$jma = new Jma();
+		$series = $jma->calculate($values);
+		$this->assertSame(8957.75, round(array_slice($series, -1)[0], 2));
 	}
 
 	public function testCalculateEmaWithEmptyArray(): void

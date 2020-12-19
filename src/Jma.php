@@ -13,7 +13,7 @@ class Jma
 		int $period = 7,
 		int $phase = 50,
 		float $power = 2
-	) : float
+	) : array
 	{
 		if (empty($values) || count($values) < $period) {
 			throw new \Exception('[' . __METHOD__ . '] $values parameters is empty');
@@ -21,12 +21,9 @@ class Jma
 
 		$beta = 0.45 * ($period - 1) / (0.45 * ($period - 1) + 2);
 		$alpha = pow($beta, $power);
-		$phase = $phase < -100 ? 0.5 : $phase > 100 ? 2.5 : $phase / 100 + 1.5;
-		$ma1 = 0;
-		$det0 = 0;
-		$det1 = 0;
-		$ma2 = 0;
-		$jma = 0;
+		$phase = $phase < -100 ? 0.5 : ($phase > 100 ? 2.5 : $phase / 100 + 1.5);
+		$ma1 = $det0 = $det1 = $ma2 = $jma = 0;
+		$return = [];
 		foreach ($values as $value) {
 			if ( !is_numeric($value)) {
 				throw new \Exception('[' . __METHOD__ . '] invalid value: '. $value);
@@ -37,8 +34,9 @@ class Jma
 			$ma2  = $ma1 + $phase * $det0;
 			$det1 = ($ma2 - $jma) * pow(1 - $alpha, 2) + pow($alpha, 2) * $det1;
 			$jma  = $jma + $det1;
+			$return[] = $jma;
 		}
 
-		return $jma;
+		return $return;
 	}
 }
